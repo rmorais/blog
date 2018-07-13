@@ -1,0 +1,4 @@
+baseURL = "https://ruimorais.com/"
+languageCode = "en-GB"
+title = "My Personal Blog"
+theme = "ananke"
