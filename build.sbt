@@ -9,3 +9,4 @@ lazy val root = (project in file("."))
   .settings(
     name := "blog"
   )
+  .enablePlugins(HugoPlugin)
