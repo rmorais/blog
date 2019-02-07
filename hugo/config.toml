@@ -1,0 +1,12 @@
+baseUrl = "https://blog.ruimorais.com"
+languageCode = "en"
+title = "My Functional Programming lessons"
+theme = "ananke"
+
+[author]
+  name = " Rui Morais"
+
+[params.social]
+  c-twitter = "https://twitter.com/ruifmorais"
+  e-linkedin = "https://www.linkedin.com/in/ruimorais/"
+  g-github = "https://github.com/rmorais"

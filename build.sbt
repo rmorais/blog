@@ -9,4 +9,8 @@ lazy val root = (project in file("."))
   .settings(
     name := "blog"
   )
-  .enablePlugins(HugoPlugin)
+  
+  /* Hugo */
+  enablePlugins(HugoPlugin)
+  sourceDirectory in Hugo := baseDirectory.value / "hugo"
+  baseURL in Hugo := uri("https://blog.ruimorais.com")
