@@ -10,7 +10,11 @@ lazy val root = (project in file("."))
     name := "blog"
   )
   
-  /* Hugo */
-  enablePlugins(HugoPlugin)
-  sourceDirectory in Hugo := baseDirectory.value / "hugo"
-  baseURL in Hugo := uri("https://blog.ruimorais.com")
+/* Hugo */
+enablePlugins(HugoPlugin)
+sourceDirectory in Hugo := baseDirectory.value / "hugo"
+baseURL in Hugo := uri("https://blog.ruimorais.com")
+
+/* GitHubPages */
+enablePlugins(GhpagesPlugin)
+git.remoteRepo := "git@github.com:rmorais/blog.git"
