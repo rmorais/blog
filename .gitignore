@@ -1,1 +1,4 @@
 public
+.bloop/
+.metals/
+target/
