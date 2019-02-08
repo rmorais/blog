@@ -20,3 +20,8 @@ enablePlugins(GhpagesPlugin)
 scmInfo := Some(ScmInfo(url("https://github.com/rmorais/blog"), "git@github.com:rmorais/blog.git"))
 git.remoteRepo := scmInfo.value.get.connection
 ghpagesNoJekyll := true
+
+/* Mdoc */
+enablePlugins(MdocPlugin)
+mdocIn := baseDirectory.value / "posts"
+mdocOut := (sourceDirectory in Hugo).value / "content" / "posts"
