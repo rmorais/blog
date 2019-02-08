@@ -17,4 +17,6 @@ baseURL in Hugo := uri("https://blog.ruimorais.com")
 
 /* GitHubPages */
 enablePlugins(GhpagesPlugin)
-git.remoteRepo := "git@github.com:rmorais/blog.git"
+scmInfo := Some(ScmInfo(url("https://github.com/rmorais/blog"), "git@github.com:rmorais/blog.git"))
+git.remoteRepo := scmInfo.value.get.connection
+ghpagesNoJekyll := true
