@@ -2,3 +2,4 @@ public
 .bloop/
 .metals/
 target/
+/hugo/content/posts/
