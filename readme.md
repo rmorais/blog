@@ -28,7 +28,7 @@ sbt ghpagesPushSite
 
 This setup was heavily inspired by [Viktor Lövgren's blog][vlovgr]
 
-
+[mdoc]: https://scalameta.org/mdoc/
 [hugo]: https://gohugo.io/
 [ghpages]: https://pages.github.com/
 [sbt-ghpages]: https://github.com/sbt/sbt-ghpages
