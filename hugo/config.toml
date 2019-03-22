@@ -1,13 +1,13 @@
 baseURL = "http://blog.ruimorais.com/"
 languageCode = "en-gb"
-title = "Rui Morais Personal Blog"
+title = "Rui Morais"
 theme = "minimal"
 
 [params]
-    author = "Calin Tataru"
-    description = "Personal blog theme powered by Hugo"
-    githubUsername = "#"
-    accent = "blue"
+    author = "Rui Morais"
+    description = "Rui Morais personal blog"
+    githubUsername = "rmorais"
+    accent = "red"
     showBorder = true
     backgroundColor = "white"
     font = "Lato" # should match the name on Google Fonts!
@@ -36,21 +36,21 @@ theme = "minimal"
     weight = 1
 
 [[menu.icon]]
-    url = "https://github.com/username/"
+    url = "https://github.com/rmorais/"
     name = "github"
     weight = 2
 
 [[menu.icon]]
-    url = "https://twitter.com/username/"
+    url = "https://twitter.com/ruifmorais/"
     name = "twitter"
     weight = 3
 
 [[menu.icon]]
-    url = "https://www.linkedin.com/in/username/"
+    url = "https://www.linkedin.com/in/ruimorais/"
     name = "linkedin"
     weight = 4
 
 [[menu.icon]]
-    url = "https://www.stackoverflow.com/username/"
+    url = "https://stackoverflow.com/users/2393532/rmorais"
     name = "stack-overflow"
     weight = 5
