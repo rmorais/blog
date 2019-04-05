@@ -27,43 +27,39 @@ Scala is a statically type language with a very powerful type systems. We can ta
 
 I want to take advantage of this and explore how we can use the compiler to help us create more robust types which can't have invalid values.
 
-Let's say we want to encode a `TimeFrame` which contains a `StartDate` and an `EndDate`.
-
-We can use a case class to encode it.
+Let's say we want to encode a `Counter`. We can use a case class to encode it.
 
 ```scala mdoc
-import java.time.LocalDate
-
-case class TimeFrame(startDate: LocalDate, endDate: LocalDate)
+case class Counter(value: Int)
 ```
 
-Now imagine that we want to impose a restriction on the allowed values. Let's say the `EndDate` should always be greater than `StartDate`.
+Now imagine that we want our counter use only positive values. There is another requirement that non positive values should default to the initial value of `1`.
 There are a couple of ways we can achieve this which I will explore below.
+
+This example is a bit contrived but will suffice for our purpose.
 
 ## Using preconditions
 
-Scala provides a set of preconditions that we use to validate our data, being one of them `require`.
+Scala provides a set of preconditions that we can use to validate our data, being one of them `require`.
 We can use it in the following way.
 
 ```scala mdoc:reset
-import java.time.LocalDate
-
-case class TimeFrame(startDate: LocalDate, endDate: LocalDate) {
-    require(endDate.isAfter(startDate))
+case class Counter(value: Int) {
+    require(value > 0)
 }
 ```
 
-This will make sure that we can't create an instance of `TimeFrame` that doesn't respect the restriction, as we can see bellow.
+This will make sure that we can't create an instance of `Counter` that doesn't respect the restriction, as we can see bellow.
 
 ```scala mdoc:crash
 
-TimeFrame(LocalDate.now, LocalDate.now)
+Counter(-1)
 
 ```
-As the values provided doesn't respect the pre conditiion, `require` will throw an exception.
+As the value provided doesn't respect the pre condition `require` will throw an exception.
 While this solves our problem, it's not a good solution. 
 
-The main issue is that it will fail at runtime. Also the user of this class, doesn't know that creating an instance can fail. This can lead to unexpected errors while running the application.
+The main issue is that it will fail at runtime. Also the user of this class doesn't know that creating an instance can fail. This can lead to unexpected errors while running the application.
 
 In this case we are not really using the compiler in our favour.
 Let's see if we can leverage the scala type system and lift this restriction into the type level.
@@ -77,74 +73,65 @@ Let's see how it looks like.
 
 ```scala mdoc:reset
 
-import java.time.LocalDate
+case class Counter private (value: Int)
 
-val today = LocalDate.now
-val yesterday = today.minusDays(1)
-
-case class TimeFrame private (startDate: LocalDate, endDate: LocalDate)
-
-object TimeFrame {
-    def smartConstructor(startDate: LocalDate, endDate: LocalDate): Either[String, TimeFrame] = 
-    if (endDate.isAfter(startDate)) 
-        Right(TimeFrame(startDate, endDate)) 
-    else 
-        Left(s"Error: endDate [$endDate] must be after startDate [$startDate]")
+object Counter {
+    def fromInt(value: Int): Counter = if (value > 0) Counter(value) else Counter(1)
 }
 ```
 
 ```scala mdoc:fail
-new TimeFrame(today, yesterday) {}
+new Counter(20) {}
 ```
-As you can see, we can no longer use the default constructor. 
-Now that we have define our own constructor, we can create only valid instances.
-```scala mdoc
-val fail = TimeFrame.smartConstructor(startDate = today, endDate = yesterday)
-```
-The custom constructor now returns a `Either[String, TimeFrame]`. This informs our user that they must deal with a possible failure.
-We are no longer rely on runtime validation but are instead using the compiler to inforce this using the type system.
 
-From the example above, when we try to construct an invalid instance we will get a `Left` indicating that something has failed. The user has to explicitly handle this.
+As you can see, we can no longer use the default constructor. 
+Now that we have define our own constructor, we can create valid instances.
+```scala mdoc
+Counter.fromInt(-3)
+```
+The custom constructor will always return a valid instance for our counter. 
+We are no longer relying on runtime validation but are instead relying on the compile time validation.
 
 Given that we are using a case class, the compiler will generate some synthetic methods for us. Generally, these are quite handy but for our case they are causing some harm.
 
 `apply` or `copy` are two of the synthetic methods generated. And they can be used to bypass our smart constructor as we can see below.
 
 ```scala mdoc
-val t = TimeFrame(startDate = today, endDate = yesterday)
+val c = Counter(-5)
 
-val t1 = TimeFrame(startDate = today, endDate = today.plusDays(1))
+val c1 = Counter(10).copy(-5)
 
-val t2 = t1.copy(endDate = yesterday)
 ```
 
 To fix this, we need to tweaks our smart constructor. We will need to define our own `apply` and `copy` to supress the synthetic ones.
 
 ```scala mdoc:reset
-
-import java.time.LocalDate
-
-val today = LocalDate.now
-val yesterday = today.minusDays(1)
-
-case class TimeFrame private (startDate: LocalDate, endDate: LocalDate) {
-    def copy(startDate: LocalDate = startDate, endDate: LocalDate = endDate): TimeFrame = TimeFrame(starDate, endDate)
+case class Counter private (value: Int) {
+    def copy(number: Int = value): Counter = Counter.fromInt(number)
 }
 
-object TimeFrame {
-    def apply(startDate: LocalDate, endDate: LocalDate): TimeFrame = new TimeFrame(startDate, endDate)
+object Counter {
+    def apply(value: Int): Counter = fromInt(value)
+
+    def fromInt(value: Int): Counter = 
+        if (value > 0) new Counter(value) else new Counter(1)
 }
 ```
+Now if we try to use again the `apply` or the `copy` methods, they will just delegate to the smart constructor.
 
-```scala mdoc:fail
-TimeFrame(today, today.plusDays(1)).copy(endDate = yesterday)
-```
+```scala mdoc
+val c = Counter(-5)
 
+val c1 = Counter(10).copy(-5)
+``` 
 
 ## Using Sealed abstract case classes
 ```scala mdoc:reset
-
-import java.time.LocalDate
-
-sealed abstract case class TimeFrame(startDate: LocalDate, endDate: LocalDate)
+sealed abstract case class Counter private (value: Int) 
 ```
+
+By using 
+```scala mdoc
+
+```
+[refined]: https://github.com/fthomas/refined
