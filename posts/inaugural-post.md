@@ -25,7 +25,7 @@ mathjax: false
 
 Welcome to my blog.
 
-My aspirations is to write about my learnings in software development, in particular, more about functional programming.
+My aspirations are to write about my learnings in software development, in particular, more about functional programming.
 This will be the place where I will be recording my thougths and discoveries of my day to day. As devil is the details, I hope my writing will allow to provide more detailed explanations about the concepts I am learning, so I can refer to them in the future.
 By taking the time to write about my learnings, I hope it will help me to better understand them.
 I also hope this content can be helpful to others.
