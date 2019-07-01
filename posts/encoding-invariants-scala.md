@@ -2,7 +2,7 @@
 title: "Encoding Invariants in Scala"
 date: 2019-06-30T11:00:16+01:00
 lastmod: 2019-06-30T11:00:16+01:00
-draft: true
+draft: false
 keywords: []
 description: ""
 tags: [Scala, Invariants, Type Safety]
