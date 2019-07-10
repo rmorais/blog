@@ -1,0 +1,59 @@
+<?xml-stylesheet type="text/xsl" href="http://blog.ruimorais.com/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://blog.ruimorais.com/post/encoding-invariants-scala/</loc>
+    <lastmod>2019-06-30T11:00:16+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ruimorais.com/tags/invariants/</loc>
+    <lastmod>2019-06-30T11:00:16+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ruimorais.com/post/</loc>
+    <lastmod>2019-06-30T11:00:16+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ruimorais.com/</loc>
+    <lastmod>2019-06-30T11:00:16+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ruimorais.com/tags/scala/</loc>
+    <lastmod>2019-06-30T11:00:16+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ruimorais.com/tags/</loc>
+    <lastmod>2019-06-30T11:00:16+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ruimorais.com/tags/type-safety/</loc>
+    <lastmod>2019-06-30T11:00:16+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ruimorais.com/post/inaugural-post/</loc>
+    <lastmod>2019-04-01T09:16:59+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ruimorais.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scala on Rui Morais Blog</title>
+    <link>http://blog.ruimorais.com/tags/scala/</link>
+    <description>Recent content in Scala on Rui Morais Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 30 Jun 2019 11:00:16 +0100</lastBuildDate>
+    
+	<atom:link href="http://blog.ruimorais.com/tags/scala/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Encoding Invariants in Scala</title>
+      <link>http://blog.ruimorais.com/post/encoding-invariants-scala/</link>
+      <pubDate>Sun, 30 Jun 2019 11:00:16 +0100</pubDate>
+      
+      <guid>http://blog.ruimorais.com/post/encoding-invariants-scala/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
